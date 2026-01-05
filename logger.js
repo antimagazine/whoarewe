@@ -1,5 +1,5 @@
-const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { JWT } = require('google-auth-library');
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
 
 // import the credentials as a base64 encoded string from environment variable
 const credentials = JSON.parse(Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS, 'base64').toString('utf8'));
@@ -12,7 +12,7 @@ const serviceAccountAuth = new JWT({
 
 const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, serviceAccountAuth);
 
-module.exports = async function (req, _, next) {
+export default async function (req, _, next) {
   try {
     await doc.loadInfo(); // loads document properties and worksheets
     await doc.sheetsByIndex[0].addRow({
