@@ -10,9 +10,9 @@ const PORT = process.env.PORT || 3000;
 const publicPath = path.join(process.cwd(), 'public');
 app.use(express.static(publicPath));
 
-const whoamiPath = path.join(process.cwd(), 'whoami.txt');
-app.get('/', logger, (req, res) => {
-  res.download(whoamiPath, 'whoami.txt', (err) => {
+const whoamiPath = path.join(process.cwd(), 'whoami.zip');
+app.get('/', logger, (_, res) => {
+  res.download(whoamiPath, 'whoami.zip', (err) => {
     if (err) return res.sendStatus(500);
   });
 });
