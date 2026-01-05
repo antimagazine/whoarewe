@@ -7,9 +7,7 @@ import logger from './logger.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(logger);
-
-app.get('/', (req, res) => {
+app.get('/', logger, (req, res) => {
   res.download(path.resolve('./whoami.txt'), 'whoami.txt', (err) => {
     if (err) return res.sendStatus(500);
   });
